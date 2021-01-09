@@ -1,0 +1,92 @@
+<!-- Menu de navegación -->
+
+<h1 class="title">Hogwarts escuela de magia y hechicería</h1>
+<nav class="navegacion">
+  <ul class="menu">
+    <li class="firstBoxItem">
+      <a href="#" (click)="casaGry()">
+        <img class="menuImagen" src="../../../assets/images/gryf_fondo.jpg" alt="">
+        <span class="text-item">Gryffindor</span>
+        <span class="down-item gryf"></span>
+      </a>
+    </li>
+    <li>
+      <a href="#" (click)="casaSly()">
+        <img class="menuImagen" src="../../../assets/images/slyt_fondo.jpg" alt="">
+        <span class="text-item">Slytherin</span>
+        <span class="down-item slyt"></span>
+      </a>
+    </li>
+    <li>
+      <a href="#" (click)="casaRav()">
+        <img class="menuImagen" src="../../../assets/images/rave_fondo.jpg" alt="">
+        <span class="text-item">Ravenclaw</span>
+        <span class="down-item rave"></span>
+      </a>
+    </li>
+    <li>
+      <a href="#" (click)="casaHuf()">
+        <img class="menuImagen" src="../../../assets/images/huff_fondo.jpg" alt="">
+        <span class="text-item">Hufflepuff</span>
+        <span class="down-item huff"></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div *ngIf="casaName.length != 0 else sombrero">
+
+  <!-- Buscador -->
+
+
+  <div class="container">
+    <h1>Tabla de personajes</h1>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <input type="text" class="form-control" name="filterWizard" placeholder="Buscar..."
+            [(ngModel)]="filterWizard">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de personajes -->
+
+  <div class="container my-5">
+    <table class="table table-striped text-center align-middle table-bordered table-hover">
+      <thead>
+        <tr class={{casaHeaderColor}}>
+          <th scope="col">Fotografía</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Edad actual</th>
+          <th scope="col">Patronus</th>
+        </tr>
+      </thead>
+      <tbody class="cuerpoTabla">
+        <tr class={{casaColor}} *ngFor="let wizard of casaName | filter: filterWizard">
+          <td>
+            <div class="imagenBox"><img class="fotosPersonajes" src={{wizard.image}} alt=""></div>
+          </td>
+          <th scope="row">{{wizard.name}}</th>
+          <td *ngIf="wizard.alive == false">Estado difunto</td>
+          <td *ngIf="wizard.yearOfBirth == 0 && wizard.alive == true">edad desconocida</td>
+          <td *ngIf="wizard.yearOfBirth != 0 && wizard.alive == true">{{2021 - wizard.yearOfBirth}}</td>
+          <td *ngIf="wizard.patronus != 0 else divElsePatronus">{{wizard.patronus}}</td>
+          <ng-template #divElsePatronus>
+            <td>Patronus desconocido</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
+
+<ng-template #sombrero>
+  <h1 class="textoSombrero">¡Seleccionemos tu casa!</h1>
+  <div class="cajaSombrero">
+    <img class="imgSombrero" src="../../../assets/images/sombrero.png" alt="">
+  </div>
+</ng-template>

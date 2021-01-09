@@ -1,0 +1,39 @@
+<div class="container justify-content-start">
+  <h1>Tabla de estudiantes</h1>
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <input type="text" class="form-control" name="filterEstudent" placeholder="Buscar..."
+          [(ngModel)]="filterEstudent">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container tablaEstudiantes my-5">
+  <table class="table table-striped text-center align-middle table-bordered table-hover">
+    <thead>
+      <tr class="headerStudents">
+        <th scope="col">Fotografía</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Edad actual</th>
+        <th scope="col">Patronus</th>
+      </tr>
+    </thead>
+    <tbody class="cuerpoTabla">
+      <tr class="table-dark table-striped" *ngFor="let wizard of estudents | filter: filterEstudent">
+        <td>
+          <div class="imagenBox"><img class="fotosPersonajes" src={{wizard.image}} alt=""></div>
+        </td>
+        <th scope="row">{{wizard.name}}</th>
+        <td *ngIf="wizard.alive == false">Estado difunto</td>
+        <td *ngIf="wizard.yearOfBirth == 0 && wizard.alive == true">edad desconocida</td>
+        <td *ngIf="wizard.yearOfBirth != 0 && wizard.alive == true">{{2021 - wizard.yearOfBirth}}</td>
+        <td *ngIf="wizard.patronus != 0 else divElsePatronus">{{wizard.patronus}}</td>
+        <ng-template #divElsePatronus>
+          <td>Patronus desconocido</td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div>

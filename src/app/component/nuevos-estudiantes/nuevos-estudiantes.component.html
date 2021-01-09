@@ -1,0 +1,67 @@
+<h2 class="text-center mt-5 mb-2">¡Resgístrate en Hogwarts!</h2>
+
+<div class="container col-5 bg-secondary border-0 rounded my-5 p-4">
+
+  <form [formGroup]="formularioNewEstudent">
+
+    <div class="mb-3">
+      <label class="form-label" for="nombre">Nombre</label>
+      <input class="form-control" type="text" name="nombre" placeholder="Nombre del solicitante"
+        formControlName="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="apellidos">Apellidos</label>
+      <input class="form-control" type="text" name="apellidos" placeholder="Apellidos del solicitante"
+        formControlName="apellidos" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="email">E-mail</label>
+      <input class="form-control" type="email" name="email" placeholder="E-mail del solicitante" formControlName="email"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="ceular">Numero de celular</label>
+      <input class="form-control" type="number" name="celular" placeholder="Número de celular del solicitante"
+        formControlName="celular" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="documento">Documento de identidad</label>
+      <input class="form-control" type="number" name="documento" placeholder="Documento de identidad del solicitante"
+        formControlName="documento" required>
+    </div>
+
+    <button [disabled]="!formularioNewEstudent.valid" class="btn btn-warning my-3" type="button"
+      (click)="guardar()">Enviar solicitud</button>
+
+      
+    </form>
+
+  </div>
+  
+  <div class="container">
+    <table class="table bg-light table-striped table-hover text-center" *ngIf="arrayNewEstudents.length != 0">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Email</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Documento de identidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arrayNewEstudents">
+          <th scope="row">{{item.nombre}}</th>
+          <td>{{item.apellidos}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.celular}}</td>
+          <td>{{item.documento}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+

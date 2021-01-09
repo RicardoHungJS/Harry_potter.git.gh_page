@@ -1,0 +1,18 @@
+.imagenBox {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    clip-path: circle(45% at 50% 50%);
+  }
+  
+  .fotosPersonajes {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100px;
+  }
+  
+  .headerStudents{
+      background: royalblue;
+  }
